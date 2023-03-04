@@ -11,28 +11,23 @@
 <script type="text/javascript">
 	$(function () {
 		$("#btn_insert").click(function () {
-			var bsn_id = $("#bsn_id").val();
-			var bsn_name = $("#bsn_name").val();
-			var bsn_rep = $("#bsn_rep").val();
-			var bsn_addr = $("#bsn_addr").val();
-			var bsn_indus = $("#bsn_indus").val();
-			var bsn_type = $("#bsn_type").val();
+			var trd_date = $("#trd_date").val();
+			var trd_client = $("#trd_client").val();
+			var trd_item = $("#trd_item").val();
+			var trd_total = $("#trd_total").val();
 			
-			var bsnCheck = confirm('거래처를 등록하시겠습니까?');
+			var bsnCheck = confirm('등록하시겠습니까?');
 			if(bsnCheck == true){
 				$.ajax({
-					url : "business_insert2.jsp",
+					url : "trade_insert2.jsp",
 					data : {
-						bsn_id : bsn_id,
-						bsn_name : bsn_name,
-						bsn_rep : bsn_rep,
-						bsn_addr : bsn_addr,
-						bsn_indus : bsn_indus,
-						bsn_type : bsn_type
+						trd_date : trd_date,
+						trd_client : trd_client,
+						trd_item : trd_item,
+						trd_total : trd_total
 					},
 					success : function(func){
-						alert('등록 완료!');
-						window.location.href = 'main.jsp';
+						window.location.href = 'trade.jsp';
 					}
 				})
 			}
@@ -66,6 +61,9 @@
 				<tr>
 					<th>합계</th>
 					<td><input type="text" id="trd_total" name="bsn_addr" class="form-control"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><button type="button" class="btn btn-dark" id="btn_insert">등록하기</button></td>
 				</tr>
 			</table>
 		</main>

@@ -32,7 +32,7 @@
 					},
 					success : function(func){
 						alert('등록 완료!');
-						window.location.href = 'main.jsp';
+						window.location.href = 'business.jsp';
 					}
 				})
 			}

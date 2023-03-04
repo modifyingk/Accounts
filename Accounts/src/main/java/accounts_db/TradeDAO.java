@@ -24,12 +24,12 @@ public class TradeDAO {
 	public void insert(TradeVO vo) {
 		int result = 0;
 		try {
-			String sql = "insert into trade value (?, ?, ?, ?, ?)";
+			String sql = "insert into trade (trd_date, trd_client, trd_item, trd_total) values (?, ?, ?, ?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(2, vo.getTrd_date());
-			ps.setString(3, vo.getTrd_client());
-			ps.setString(4, vo.getTrd_item());
-			ps.setInt(5, vo.getTrd_total());
+			ps.setString(1, vo.getTrd_date());
+			ps.setString(2, vo.getTrd_client());
+			ps.setString(3, vo.getTrd_item());
+			ps.setInt(4, vo.getTrd_total());
 			System.out.println("3. SQL문 생성 성공");
 			
 			result = ps.executeUpdate();
