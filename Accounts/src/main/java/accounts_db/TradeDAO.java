@@ -47,7 +47,7 @@ public class TradeDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	/*
 	public ArrayList<TradeVO> list() {
 		ArrayList<TradeVO> list = new ArrayList<>();
 		try {
@@ -78,4 +78,5 @@ public class TradeDAO {
 		System.out.println(list);
 		return list;
 	}
+	*/
 }
