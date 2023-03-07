@@ -24,7 +24,7 @@ public class BsnTrdDAO {
 	public ArrayList<BsnTrdVO> list() {
 		ArrayList<BsnTrdVO> list = new ArrayList<>();
 		try {
-			String sql = "select trd_date, bsn_name, trd_item, trd_total from trade t, business b where t.trd_client = b.bsn_id;";
+			String sql = "select trd_id, trd_date, trd_client, bsn_name, trd_item, trd_total from trade t, business b where t.trd_client = b.bsn_id order by trd_date;";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			System.out.println("3. SQL문 생성 성공");
 			
@@ -33,10 +33,12 @@ public class BsnTrdDAO {
 			
 			while(rs.next()) {
 				BsnTrdVO vo = new BsnTrdVO();
-				vo.setTrd_date(rs.getString(1));
-				vo.setBsn_name(rs.getString(2));
-				vo.setTrd_item(rs.getString(3));
-				vo.setTrd_total(rs.getInt(4));
+				vo.setTrd_id(rs.getString(1));
+				vo.setTrd_date(rs.getString(2));
+				vo.setTrd_client(rs.getString(3));
+				vo.setBsn_name(rs.getString(4));
+				vo.setTrd_item(rs.getString(5));
+				vo.setTrd_total(rs.getInt(6));
 				list.add(vo);
 			}
 			

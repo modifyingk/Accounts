@@ -16,11 +16,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(function () {
-		$(".card").mouseover(function () {
-			$(this).css('cursor', 'pointer');
-			$(this).css('background', '#ececec');
+		$(".card").mouseover(function () { // card class에 마우스 갖다대면
+			$(this).css('cursor', 'pointer'); // 커서 스타일 변경
+			$(this).css('background', '#ececec'); // 배경색 변경
 		})
-		$(".card").mouseout(function () {
+		$(".card").mouseout(function () { // card class에서 마우스 떼면
 			$(this).css('background', 'white');
 		})
 		

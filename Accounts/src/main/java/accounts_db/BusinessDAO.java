@@ -50,6 +50,59 @@ public class BusinessDAO {
 		}
 	}
 	
+	public void update(BusinessVO vo) {
+		int result = 0;
+		try {
+			String sql = "update business set bsn_name = ?, bsn_rep = ?, bsn_addr = ?, bsn_indus = ?, bsn_type = ? where bsn_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, vo.getBsn_name());
+			ps.setString(2, vo.getBsn_rep());
+			ps.setString(3, vo.getBsn_addr());
+			ps.setString(4, vo.getBsn_indus());
+			ps.setString(5, vo.getBsn_type());
+			ps.setString(6, vo.getBsn_id());
+			System.out.println("3. SQL문 생성 성공");
+			
+			result = ps.executeUpdate();
+			if(result != 0) {
+				System.out.println("데이터베이스에 저장 성공!");
+			} else {
+				System.out.println("** 데이터베이스에 저장 실패 **");
+			}
+			System.out.println("4. SQL문 전송 성공");
+			
+			ps.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void delete(String bsn_id) {
+		int result = 0;
+		try {
+			String sql = "delete from business where bsn_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, bsn_id);
+			System.out.println("3. SQL문 생성 성공");
+			
+			result = ps.executeUpdate();
+			if(result != 0) {
+				System.out.println("데이터베이스에서 삭제 성공!");
+			} else {
+				System.out.println("** 데이터베이스에서 삭제 실패 **");
+			}
+			System.out.println("4. SQL문 전송 성공");
+			
+			ps.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public ArrayList<BusinessVO> list() {
 		ArrayList<BusinessVO> list = new ArrayList<>();
 		try {

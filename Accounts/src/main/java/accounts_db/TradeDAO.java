@@ -47,11 +47,63 @@ public class TradeDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void update(TradeVO vo) {
+		int result = 0;
+		try {
+			String sql = "update trade set trd_date = ?, trd_client = ?, trd_item = ?, trd_total = ? where trd_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, vo.getTrd_date());
+			ps.setString(2, vo.getTrd_client());
+			ps.setString(3, vo.getTrd_item());
+			ps.setInt(4, vo.getTrd_total());
+			ps.setInt(5, vo.getTrd_id());
+			System.out.println("3. SQL문 생성 성공");
+			
+			result = ps.executeUpdate();
+			if(result != 0) {
+				System.out.println("데이터베이스에 저장 성공!");
+			} else {
+				System.out.println("** 데이터베이스에 저장 실패 **");
+			}
+			System.out.println("4. SQL문 전송 성공");
+			
+			ps.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void delete(int trd_id) {
+		int result = 0;
+		try {
+			String sql = "delete from trade where trd_id = ?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, trd_id);
+			System.out.println("3. SQL문 생성 성공");
+			
+			result = ps.executeUpdate();
+			if(result != 0) {
+				System.out.println("데이터베이스에서 삭제 성공!");
+			} else {
+				System.out.println("** 데이터베이스에서 삭제 실패 **");
+			}
+			System.out.println("4. SQL문 전송 성공");
+			
+			ps.close();
+			conn.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	/*
 	public ArrayList<TradeVO> list() {
 		ArrayList<TradeVO> list = new ArrayList<>();
 		try {
-			String sql = "select * from trade";
+			String sql = "select * from trade order by trd_date";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			System.out.println("3. SQL문 생성 성공");
 			

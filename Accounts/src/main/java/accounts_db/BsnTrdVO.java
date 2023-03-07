@@ -1,16 +1,31 @@
 package accounts_db;
 
 public class BsnTrdVO {
+	private String trd_id;
 	private String trd_date;
+	private String trd_client;
 	private String bsn_name;
 	private String trd_item;
 	private int trd_total;
 	
+	public String getTrd_id() {
+		return trd_id;
+	}
+	public void setTrd_id(String trd_id) {
+		this.trd_id = trd_id;
+	}
 	public String getTrd_date() {
 		return trd_date;
 	}
 	public void setTrd_date(String trd_date) {
 		this.trd_date = trd_date;
+	}
+	
+	public String getTrd_client() {
+		return trd_client;
+	}
+	public void setTrd_client(String trd_client) {
+		this.trd_client = trd_client;
 	}
 	public String getBsn_name() {
 		return bsn_name;
