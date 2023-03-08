@@ -50,11 +50,11 @@
 			
 			if(event.keyCode != 8){
 				if(bsn_id.length == 3){
-					bsn_id = bsn_id = bsn_id + "-";
+					bsn_id = bsn_id + "-";
 					$("#bsn_id").val(bsn_id);
 				}
 				if(bsn_id.length == 6){
-					bsn_id = bsn_id = bsn_id + "-";
+					bsn_id = bsn_id + "-";
 					$("#bsn_id").val(bsn_id);
 				}
 			}

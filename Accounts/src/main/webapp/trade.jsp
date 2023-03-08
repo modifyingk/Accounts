@@ -98,10 +98,18 @@
 			$("#trd_client").attr('value', trd_client_val);
 			$("#bsn_name").attr('value', bsn_name_val);
 
+			$("#close_modal").click();
+		})
+		
+		/* 거래처 검색 테이블2 (거래내역 수정 테이블에서 거래처 검색했을 경우) */
+		$("#bsn_list2 tr").click(function() { // 거래처 리스트 중
+			var trd_client_val = $(this).find("td:eq(0)").text(); // 클릭한 행의 사업자등록번호 값 trd_client_val에 저장
+			var bsn_name_val = $(this).find("td:eq(1)").text(); // 클릭한 행의 사업자등록번호 값 bsn_name_val에 저장
+			
 			$("#modal_trd_client").attr('value', trd_client_val);
 			$("#modal_bsn_name").attr('value', bsn_name_val);
 			
-			$("#close_modal").click();
+			$("#close_modal2").click();
 		})
 		
 		/* 거래내역 수정 테이블 */
@@ -122,6 +130,12 @@
 			
 			$("#trd_update_modal").modal("show");
 		})
+		
+		/* 000 클릭 시 */
+		$("#thous").click(function() {
+			var trd_total = parseInt($("#trd_total").val()) * 1000;
+			$("#trd_total").val(trd_total);
+		})
 	})
 </script>
 <body>
@@ -137,7 +151,7 @@
 					<td style="display: none;">사업자등록번호</td>
 					<td colspan="2">거래처</td>
 					<td>품목</td>
-					<td>합계</td>
+					<td colspan="2">합계</td>
 					<td></td>
 				</tr>
 				<tr>
@@ -146,7 +160,8 @@
 					<td style="padding-right: 0;"><input type="text" id="bsn_name" class="form-control" placeholder="거래처"></td>
 					<td style="padding-left: 0;"><button class="btn btn-outline-dark" data-toggle="modal" data-target="#bsn_find_modal"><i class="fi fi-rr-search"></i></button></td>
 					<td><input type="text" id="trd_item" class="form-control" placeholder="품목"></td>
-					<td><input type="text" id="trd_total" class="form-control" placeholder="합계"></td>
+					<td style="padding-right: 0;"><input type="text" id="trd_total" class="form-control" placeholder="합계"></td>
+					<td style="padding-left: 0;"><button class="btn btn-outline-dark" id="thous">000</button></td>
 					<td><button type="button" class="btn btn-dark" id="btn_insert">등록하기</button></td>
 				</tr>
 			</table>
@@ -211,7 +226,7 @@
         						<tr>
         							<th>거래처</th>
         							<td style="padding-right: 0;"><input type="text" id="modal_bsn_name" class="form-control"></td>
-        							<td style="padding-left: 0; padding-right: 0"><button class="btn btn-outline-dark" data-toggle="modal" data-target="#bsn_find_modal"><i class="fi fi-rr-search"></i></button></td>
+        							<td style="padding-left: 0; padding-right: 0"><button class="btn btn-outline-dark" data-toggle="modal" data-target="#bsn_find_modal2"><i class="fi fi-rr-search"></i></button></td>
         						</tr>
         						<tr>
         							<th>품목</th>
@@ -273,6 +288,51 @@
         
         				<div class="modal-footer">
           					<button type="button" class="btn btn-dark" data-dismiss="modal" id="close_modal">닫기</button>
+        				</div>
+      				</div>
+    			</div>
+  			</div>
+  			
+  			<!-- 거래처 찾기 modal2 -->
+			<div class="modal" id="bsn_find_modal2">
+   		 		<div class="modal-dialog modal-dialog-scrollable">
+      				<div class="modal-content">
+	        			<div class="modal-header">
+         					<h4 class="modal-title">거래처 찾기</h4>
+          					<button type="button" class="close" data-dismiss="modal">&times;</button>
+        				</div>
+        	
+        				<div class="modal-body">
+        					<table class="table">
+        						<tr>
+        							<td style="border-top: none;">거래처명</td>
+        							<td style="border-top: none;"><input type="text" class="form-control"></td>
+        							<td style="border-top: none;"><button class="btn btn-outlint-dark"><i class="fi fi-rr-search"></i></button></td>
+        						</tr>
+        					</table>
+        				
+        					<table class="table table-hover" id="bsn_list2">
+        						<tr>
+        							<th>사업자 등록 번호</th>
+        							<th>거래처명</th>
+        							<th>대표자</th>
+        						</tr>
+          						<%
+								for(int i=0; i<list2.size(); i++){
+								%>
+								<tr>
+									<td><%= list2.get(i).getBsn_id() %></td>
+									<td><%= list2.get(i).getBsn_name() %></td>
+									<td><%= list2.get(i).getBsn_rep() %></td>
+								</tr>
+								<%	
+								}
+								%>
+        					</table>
+        				</div>
+        
+        				<div class="modal-footer">
+          					<button type="button" class="btn btn-dark" data-dismiss="modal" id="close_modal2">닫기</button>
         				</div>
       				</div>
     			</div>
